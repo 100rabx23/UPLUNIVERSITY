@@ -4,10 +4,6 @@
   <meta charset="UTF-8" />
   <title>UPL University Alumni Meet 2026 – Registration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Razorpay Checkout script -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
   <style>
     * {
       box-sizing: border-box;
@@ -140,18 +136,6 @@
     button:hover {
       filter: brightness(1.05);
     }
-    .status {
-      font-size: 0.8rem;
-      margin-top: 0.7rem;
-      color: #9ca3af;
-      min-height: 1.2em;
-    }
-    .status.success {
-      color: #4ade80;
-    }
-    .status.error {
-      color: #fb7185;
-    }
     .note {
       font-size: 0.75rem;
       color: #6b7280;
@@ -201,7 +185,11 @@
         Registration & Payment
       </h2>
 
-      <form id="regForm">
+      <!-- 🔥 Direct POST to Apps Script -->
+      <form
+        id="regForm"
+        method="POST"
+        action="https://script.google.com/macros/s/AKfycbxRsH-As-gmdczGbhsKmYOdmwa6qQPtGYctSRrHwc95dYEevWj-nGraqiXRsrtQlrUimA/exec">
         <label for="name">Full Name *</label>
         <input id="name" name="name" type="text" required />
 
@@ -228,6 +216,15 @@
             />
           </div>
         </div>
+
+        <label for="discipline">Discipline *</label>
+        <input
+          id="discipline"
+          name="discipline"
+          type="text"
+          placeholder="Diploma / B.Tech / B.Sc / BE / M.Tech"
+          required
+        />
 
         <div class="row">
           <div>
@@ -262,111 +259,38 @@
           <strong>₹<span id="totalAmount">0</span></strong>
         </div>
 
-        <button type="button" id="payBtn">
-          Pay with Razorpay & Confirm Registration
+        <!-- Hidden field: total amount backend ko jayega -->
+        <input type="hidden" id="amount" name="amount" value="0" />
+
+        <button type="submit">
+          Submit & View Payment Instructions
         </button>
-        <div id="status" class="status"></div>
         <div class="note">
-          Payment will be processed securely by Razorpay. Card/UPI details are
-          not stored by the university.
+          After submitting, you’ll see your exact amount and UPI payment link on the
+          next page. A confirmation email will also be sent.
         </div>
+        <p class="small" style="margin-top:0.4rem;">
+          Official UPI ID: <strong>UPI_ID_HERE</strong>
+        </p>
       </form>
     </div>
   </div>
 
   <script>
-    const PRICE_PER_PERSON = 100; // change if fee updates
-
+    const PRICE_PER_PERSON = 100;
     const personsSelect = document.getElementById("persons");
     const totalAmountSpan = document.getElementById("totalAmount");
-    const payBtn = document.getElementById("payBtn");
-    const regForm = document.getElementById("regForm");
-    const statusEl = document.getElementById("status");
+    const amountInput = document.getElementById("amount");
 
     function updateAmount() {
-      const persons = parseInt(personsSelect.value || "0", 10);
+      const persons = Number(personsSelect.value || "0");
       const total = persons * PRICE_PER_PERSON;
-      totalAmountSpan.textContent = total;
+      const safeTotal = Number.isFinite(total) ? total : 0;
+      totalAmountSpan.textContent = safeTotal;
+      amountInput.value = safeTotal;
     }
 
     personsSelect.addEventListener("change", updateAmount);
-
-    payBtn.addEventListener("click", function () {
-      if (!regForm.checkValidity()) {
-        regForm.reportValidity();
-        return;
-      }
-
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const passout = document.getElementById("passout").value.trim();
-      const branch = document.getElementById("branch").value.trim();
-      const persons = parseInt(personsSelect.value, 10);
-      const total = persons * PRICE_PER_PERSON;
-
-      if (!persons || total <= 0) {
-        statusEl.textContent = "Please select number of persons.";
-        statusEl.className = "status error";
-        return;
-      }
-
-      statusEl.textContent = "Opening payment gateway...";
-      statusEl.className = "status";
-
-      const options = {
-        
-//Ma'am here put your API KEY 🔐 
-        key: "rzp_test_RolQQLeIiByYbf",
-        amount: total * 100, // paise
-        currency: "INR",
-        name: "UPL University Alumni Meet",
-        description: `Alumni Meet 2026 • ${persons} person(s)`,
-        // Ideally use order_id from your backend for real system
-        handler: function (response) {
-          console.log("Payment success:", response);
-          statusEl.textContent =
-            "Payment successful! Payment ID: " + response.razorpay_payment_id;
-          statusEl.className = "status success";
-
-          // TODO:
-          // Send details + payment ID to your backend / Google Sheet
-          // Example:
-          // fetch("https://your-backend-url.com/save", {
-          //   method: "POST",
-          //   headers: { "Content-Type": "application/json" },
-          //   body: JSON.stringify({
-          //     name, email, phone, passout, branch, persons, total,
-          //     paymentId: response.razorpay_payment_id,
-          //   }),
-          // });
-        },
-        prefill: {
-          name: name,
-          email: email,
-          contact: "+91" + phone,
-        },
-        notes: {
-          passout_year: passout,
-          branch: branch,
-          persons: persons,
-          event: "UPL Alumni Meet 2026",
-        },
-        theme: {
-          color: "#22c55e",
-        },
-      };
-
-      const rzp = new Razorpay(options);
-      rzp.on("payment.failed", function (resp) {
-        console.error(resp.error);
-        statusEl.textContent =
-          "Payment failed or cancelled. Please try again.";
-        statusEl.className = "status error";
-      });
-
-      rzp.open();
-    });
   </script>
 </body>
-  </html>
+</html>
