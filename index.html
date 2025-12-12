@@ -1,296 +1,288 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>UPL University Alumni Meet 2026 – Registration</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UPL Alumni Meet 2026 — Registration</title>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-    }
-    body {
-      margin: 0;
-      padding: 1rem;
-      background: #020617;
-      color: #e5e7eb;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      max-width: 900px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 1.5rem;
-    }
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-    }
-    .card {
-      background: #020617;
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      border: 1px solid #1f2937;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-    .card-header {
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 1.5rem;
-      margin: 0 0 0.4rem;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.1);
-      color: #4ade80;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.6rem;
-    }
-    .subtitle {
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-    .event-meta {
-      margin-top: 0.85rem;
-      padding: 0.85rem;
-      border-radius: 0.9rem;
-      background: #020617;
-      border: 1px solid #1f2937;
-      font-size: 0.85rem;
-    }
-    .event-meta div {
-      margin-bottom: 0.25rem;
-    }
-    .event-meta strong {
-      color: #e5e7eb;
-    }
-    .highlight {
-      color: #facc15;
-      font-weight: 500;
-    }
-    label {
-      display: block;
-      font-size: 0.8rem;
-      margin-bottom: 0.22rem;
-    }
-    input,
-    select {
-      width: 100%;
-      padding: 0.55rem 0.65rem;
-      border-radius: 0.5rem;
-      border: 1px solid #374151;
-      background: #020617;
-      color: #e5e7eb;
-      font-size: 0.9rem;
-      margin-bottom: 0.85rem;
-      outline: none;
-    }
-    input:focus,
-    select:focus {
-      border-color: #22c55e;
-      box-shadow: 0 0 0 1px #22c55e40;
-    }
-    .row {
-      display: flex;
-      gap: 0.75rem;
-    }
-    .row > div {
-      flex: 1;
-    }
-    .amount-box {
-      background: #022c22;
-      border-radius: 0.9rem;
-      padding: 0.85rem 1rem;
-      margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.9rem;
-    }
-    .amount-box strong {
-      font-size: 1.1rem;
-    }
-    button {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(to right, #22c55e, #16a34a);
-      color: #022c22;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      margin-top: 0.25rem;
-    }
-    button:hover {
-      filter: brightness(1.05);
-    }
-    .note {
-      font-size: 0.75rem;
-      color: #6b7280;
-      margin-top: 0.6rem;
-    }
-    .small {
-      font-size: 0.8rem;
-      color: #9ca3af;
-    }
+    :root{--bg:#021021;--card:#061526;--muted:#9aa3ad;--accent:#22c55e}
+    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    body{margin:0;padding:1rem;background:var(--bg);color:#e6eef2;display:flex;justify-content:center}
+    .wrap{max-width:980px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:1rem}
+    @media(max-width:840px){.wrap{grid-template-columns:1fr}}
+    .card{background:var(--card);padding:1.15rem;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    h1{margin:0 0 .25rem;font-size:1.25rem}
+    .muted{color:var(--muted);font-size:0.9rem}
+    label{display:block;font-size:0.85rem;margin-top:0.6rem}
+    input,select,textarea{width:100%;padding:.55rem;border-radius:8px;border:1px solid rgba(255,255,255,0.06);
+      background:transparent;color:#e6eef2;font-size:0.95rem;margin-top:0.25rem}
+    .row{display:flex;gap:0.6rem}
+    .row>div{flex:1}
+    .amount{display:flex;justify-content:space-between;align-items:center;padding:.7rem;border-radius:10px;
+      background:rgba(34,197,94,0.06);margin-top:0.8rem}
+    .btn{display:inline-block;width:100%;padding:.7rem;border-radius:999px;border:none;background:linear-gradient(90deg,var(--accent),#16a34a);
+      color:#04291b;font-weight:700;font-size:.98rem;cursor:pointer;margin-top:0.8rem}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    #qrwrap{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;margin-top:.8rem}
+    #qrimg{padding:.6rem;background:rgba(255,255,255,0.02);border-radius:8px;max-width:160px}
+    .small{font-size:0.82rem;color:var(--muted)}
+    .status{margin-top:0.6rem;font-size:0.9rem}
+    .status.ok{color:#9ae6b4}
+    .status.err{color:#ff9aa2}
+    input[type=file]{padding:.35rem}
+    .flex-between{display:flex;justify-content:space-between;align-items:center}
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- LEFT: Event Info -->
+  <div class="wrap">
+
+    <!-- LEFT: Event info -->
     <div class="card">
-      <div class="card-header">
-        <div class="badge">UPL University • Alumni Meet 2026</div>
-        <h1>Alumni Meet – 4 January 2026</h1>
-        <p class="subtitle">
-          UPL University is organizing an <strong>Alumni Meet</strong> on
-          <strong>Sunday, 4 January 2026</strong>, followed by
-          <span class="highlight">high tea and dinner</span> from
-          <strong>3:00 pm to 7:00 pm</strong>.
-        </p>
-        <p class="subtitle" style="margin-top:0.6rem;">
-          <em>Your presence truly matters to us.</em> Kindly register in advance to
-          help us plan arrangements smoothly.
-        </p>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h1>UPL Alumni Meet — 4 Jan 2026</h1>
+          <div class="muted">High tea & dinner • 3:00 PM – 7:00 PM • UPL University Campus</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:0.8rem;color:#fce38a">Fee</div>
+          <div style="font-weight:700;font-size:1rem">₹100 / person</div>
+        </div>
       </div>
 
-      <div class="event-meta">
-        <div><strong>Date:</strong> Sunday, 4 January 2026</div>
-        <div><strong>Time:</strong> 3:00 pm – 7:00 pm</div>
-        <div><strong>Venue:</strong> UPL University (Campus)</div>
-        <div><strong>Fee:</strong> ₹100 per person (includes entry & refreshments)</div>
-      </div>
+      <p class="small" style="margin-top:1rem">Your presence truly matters. Register, pay using the fixed QR, upload screenshot and confirm.</p>
 
-      <p class="small" style="margin-top:0.7rem;">
-        Please complete the registration and payment to confirm your seat.
-        You may register for yourself and accompanying family members/friends.
-      </p>
+      <div style="margin-top:1rem">
+        <strong>Event details</strong>
+        <ul class="small" style="margin:0.45rem 0 0 1rem;padding:0">
+          <li>Sunday, 4 January 2026</li>
+          <li>3:00 pm – 7:00 pm</li>
+          <li>High tea & dinner included</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- RIGHT: Registration + Payment -->
+    <!-- RIGHT: Form & payment -->
     <div class="card">
-      <h2 style="font-size:1.1rem;margin-top:0;margin-bottom:1rem;">
-        Registration & Payment
-      </h2>
-
-      <!-- 🔥 Direct POST to Apps Script -->
-      <form
-        id="regForm"
-        method="POST"
-        action="https://script.google.com/macros/s/AKfycbx8u1RlIWAm_waHh1kHaDTt2Xbv567zMB3W7K4ynDdibom7h-7hk9kBv8AOT3f8f--7_w/exec">
-        <label for="name">Full Name *</label>
-        <input id="name" name="name" type="text" required />
+      <form id="regForm" autocomplete="off">
+        <label>Full name *</label>
+        <input id="name" required />
 
         <div class="row">
           <div>
-            <label for="passout">Pass-out Year *</label>
-            <input
-              id="passout"
-              name="passout"
-              type="number"
-              min="2000"
-              max="2035"
-              required
-            />
+            <label>Pass-out year *</label>
+            <input id="passout" type="number" min="2000" max="2035" required />
           </div>
           <div>
-            <label for="branch">Branch *</label>
-            <input
-              id="branch"
-              name="branch"
-              type="text"
-              placeholder="e.g., Computer, Mechanical"
-              required
-            />
+            <label>Course (Diploma/BE/ME/BSc/MSc etc.) *</label>
+            <input id="course" required placeholder="e.g., BE" />
           </div>
         </div>
 
-        <label for="discipline">Discipline *</label>
-        <input
-          id="discipline"
-          name="discipline"
-          type="text"
-          placeholder="Diploma / B.Tech / B.Sc / BE / M.Tech"
-          required
-        />
+        <label>Branch *</label>
+        <input id="branch" required placeholder="e.g., Computer" />
 
         <div class="row">
           <div>
-            <label for="phone">Mobile Number *</label>
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              pattern="[0-9]{10}"
-              maxlength="10"
-              required
-            />
+            <label>Mobile number *</label>
+            <input id="phone" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required />
           </div>
           <div>
-            <label for="email">Email *</label>
-            <input id="email" name="email" type="email" required />
+            <label>Email *</label>
+            <input id="email" type="email" required />
           </div>
         </div>
 
-        <label for="persons">No. of Persons (including you) *</label>
-        <select id="persons" name="persons" required>
+        <label>No. of persons (including you) *</label>
+        <select id="persons" required>
           <option value="">Select</option>
           <option value="1">1 (Only me)</option>
-          <option value="2">2 (Me + 1)</option>
-          <option value="3">3 (Me + 2)</option>
-          <option value="4">4 (Me + 3)</option>
-          <option value="5">5 (Me + 4)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
 
-        <div class="amount-box">
-          <span>Total (₹100 × persons)</span>
-          <strong>₹<span id="totalAmount">0</span></strong>
+        <div class="amount">
+          <div class="small">Total to pay</div>
+          <div style="font-weight:700">₹ <span id="total">0</span></div>
         </div>
 
-        <!-- Hidden field: total amount backend ko jayega -->
-        <input type="hidden" id="amount" name="amount" value="0" />
-
-        <button type="submit">
-          Submit & View Payment Instructions
-        </button>
-        <div class="note">
-          After submitting, you’ll see your exact amount and UPI payment link on the
-          next page. A confirmation email will also be sent.
+        <div class="small" style="margin-top:.6rem">
+          Scan this fixed QR and pay exact amount via your UPI app. Then upload screenshot below.
         </div>
-        <p class="small" style="margin-top:0.4rem;">
-          Official UPI ID: <strong>rupalibe@oksbi</strong>
-        </p>
+
+        <!-- FIXED QR IMAGE -->
+        <div id="qrwrap">
+          <img id="qrimg" src="" alt="Fixed UPI QR" width="160" height="160" />
+          <div style="flex:1">
+            <div class="small">UPI ID (payee): <strong id="showUpi">yourupi@bank</strong></div>
+            <div class="small" style="margin-top:.4rem">If payment done, click "I paid via UPI", upload screenshot and Confirm.</div>
+            <button type="button" id="copyUpi" class="btn ghost" style="margin-top:.5rem">Copy UPI ID</button>
+          </div>
+        </div>
+
+        <div style="margin-top:.7rem" class="flex-between">
+          <button type="button" id="paidUpiBtn" class="btn ghost" style="width:140px">I paid via UPI</button>
+        </div>
+
+        <label style="margin-top:0.8rem">Upload payment screenshot / proof (required)</label>
+        <input id="proof" type="file" accept="image/*" />
+        <div class="small">Only JPG/PNG. After upload click Confirm & Send Receipt.</div>
+
+        <button type="button" id="confirmBtn" class="btn" style="margin-top:0.8rem">Confirm & Send Receipt</button>
+
+        <div id="status" class="status" style="margin-top:.6rem"></div>
       </form>
     </div>
+
   </div>
 
-  <script>
-    const PRICE_PER_PERSON = 100;
-    const personsSelect = document.getElementById("persons");
-    const totalAmountSpan = document.getElementById("totalAmount");
-    const amountInput = document.getElementById("amount");
+<script>
+/* --------- CONFIG: replace these values before hosting ---------- */
+const CONFIG = {
+  PRICE_PER_PERSON: 100,
+  QR_IMAGE_URL: "https://imgbb.com/"><img src="https://i.ibb.co/VWKHNPr9/IMG-20251212-WA0000.jpg, // public direct link to your fixed QR image
+  UPI_ID: "yespay.bizsbiz110091@yesbankltd",                         // your UPI VPA (for copy)
+  SHEET_ENDPOINT: "https://script.google.com/macros/s/AKfycbyWtmulpDokev9zf6urQTSEZ0QvNzk2K-7Na0o4boYFPDSkHxCJ7TNC9f32TfWcJjCNGw/exec" // Apps Script Web App URL (POST)
+};
+/* --------------------------------------------------------------- */
 
-    function updateAmount() {
-      const persons = Number(personsSelect.value || "0");
-      const total = persons * PRICE_PER_PERSON;
-      const safeTotal = Number.isFinite(total) ? total : 0;
-      totalAmountSpan.textContent = safeTotal;
-      amountInput.value = safeTotal;
+const persons = document.getElementById("persons");
+const totalEl = document.getElementById("total");
+const qrimg = document.getElementById("qrimg");
+const showUpi = document.getElementById("showUpi");
+const copyUpi = document.getElementById("copyUpi");
+const paidUpiBtn = document.getElementById("paidUpiBtn");
+const proofInput = document.getElementById("proof");
+const confirmBtn = document.getElementById("confirmBtn");
+const status = document.getElementById("status");
+const regForm = document.getElementById("regForm");
+
+/* init */
+qrimg.src = CONFIG.QR_IMAGE_URL || "";
+showUpi.textContent = CONFIG.UPI_ID || "yourupi@bank";
+
+/* amount calc */
+function updateAmountUI(){
+  const p = parseInt(persons.value || "0", 10);
+  const total = (isNaN(p) ? 0 : p * CONFIG.PRICE_PER_PERSON);
+  totalEl.textContent = total;
+}
+persons.addEventListener("change", updateAmountUI);
+updateAmountUI();
+
+/* copy upi */
+copyUpi.addEventListener("click", () => {
+  const upi = CONFIG.UPI_ID || "yourupi@bank";
+  navigator.clipboard?.writeText(upi).then(()=> {
+    status.textContent = "UPI ID copied to clipboard.";
+    status.className = "status ok";
+  }).catch(()=> {
+    status.textContent = "Cannot copy UPI ID on this device. Long-press to copy.";
+    status.className = "status err";
+  });
+});
+
+/* mark paid via UPI */
+paidUpiBtn.addEventListener("click", () => {
+  const d = gatherFormData();
+  if(!d.name || !d.email || !d.phone || !d.persons) {
+    status.textContent = "Please fill required fields first.";
+    status.className = "status err";
+    return;
+  }
+  regForm.dataset.paymentMethod = "upi";
+  status.textContent = "Marked as paid via UPI. Now please upload screenshot and Confirm.";
+  status.className = "status ok";
+});
+
+/* helper: file -> dataURL */
+function fileToDataURL(file) {
+  return new Promise((resolve, reject) => {
+    if(!file) return resolve(null);
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* gather form */
+function gatherFormData(){
+  const name = document.getElementById("name").value.trim();
+  const passout = document.getElementById("passout").value.trim();
+  const course = document.getElementById("course").value.trim();
+  const branch = document.getElementById("branch").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const personsVal = parseInt(document.getElementById("persons").value||"0",10);
+  const total = personsVal * CONFIG.PRICE_PER_PERSON;
+  const paymentId = regForm.dataset.paymentId || "";
+  const paymentMethod = regForm.dataset.paymentMethod || "";
+  return { name, passout, course, branch, phone, email, persons: personsVal, total, paymentId, paymentMethod };
+}
+
+/* confirm button */
+confirmBtn.addEventListener("click", async () => {
+  try {
+    status.textContent = "Processing..."; status.className="status";
+    const d = gatherFormData();
+    if(!d.name || !d.email || !d.phone || !d.persons) {
+      status.textContent = "Please fill all required fields first.";
+      status.className="status err"; return;
     }
+    if(!regForm.dataset.paymentMethod) {
+      status.textContent = "Please click 'I paid via UPI' after paying, then upload screenshot.";
+      status.className = "status err"; return;
+    }
+    const file = proofInput.files[0];
+    if(!file){
+      status.textContent = "Please upload payment screenshot (required).";
+      status.className = "status err"; return;
+    }
+    if(file.size > 6*1024*1024){
+      status.textContent = "File too large. Use an image under 6MB.";
+      status.className = "status err"; return;
+    }
+    const dataUrl = await fileToDataURL(file);
 
-    personsSelect.addEventListener("change", updateAmount);
-  </script>
+    const payload = {
+      name: d.name, email: d.email, phone: d.phone, passout: d.passout,
+      course: d.course, branch: d.branch,
+      persons: d.persons, amount: d.total,
+      paymentMethod: regForm.dataset.paymentMethod || "upi",
+      proofBase64: dataUrl,
+      timestamp: new Date().toISOString()
+    };
+
+    // POST to Apps Script (Sheet + Drive + email handled there)
+    if(!CONFIG.SHEET_ENDPOINT){
+      status.textContent = "Sheet endpoint not configured. Ask admin to set SHEET_ENDPOINT in the file.";
+      status.className = "status err";
+      return;
+    }
+    const resp = await fetch(CONFIG.SHEET_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify(payload)
+    });
+    const text = await resp.text();
+    if(!resp.ok){
+      status.textContent = "Server error: " + text;
+      status.className = "status err";
+      return;
+    }
+    // success
+    status.textContent = "Registration recorded. Confirmation email will be sent to you shortly (if email valid).";
+    status.className = "status ok";
+    // optional: clear form
+    // regForm.reset(); updateAmountUI();
+  } catch(e){
+    console.error(e);
+    status.textContent = "Unexpected error: " + (e.message || e);
+    status.className = "status err";
+  }
+});
+</script>
 </body>
 </html>
